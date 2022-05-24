@@ -46,9 +46,9 @@ export const routeList: IRouteList[] = [
     name: 'UseRef'
   },
   {
-    path: '/use/highComp',
+    path: '/use/useHOC',
     title: '高阶组件使用',
-    name: 'UseHighComp'
+    name: 'UseHOC'
   },
   {
     path: '/use/useRefs',

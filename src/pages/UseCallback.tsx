@@ -3,6 +3,7 @@ import React, {useState, useCallback, PureComponent} from 'react';
 export default function(){
   const [count, setCount] = useState(0);
   const [value, setValue] = useState("");
+  // memo搭配useCallback使用，防止子组件非必要刷新
   const addClick = useCallback(() => {
     let sum = 0;
     for(let i = 0;i < count;i++){
