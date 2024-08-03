@@ -24,27 +24,26 @@ type PropType = {
 
 class Layout extends Component<PropType> {
   componentDidMount(){
-      const {title="商城"} = this.props;
-      document.title = title;
-      // 此title为最上部显示区
+    const { title="商城" } = this.props;
+    document.title = title;
   }
 
   render(){
-      const { children, showTopBar, showBottomBar } = this.props;
-      console.log(children);
-      return (
-          <div>
-              {showTopBar ? <TopBar /> : null}
-              <h1>layout</h1>
-              {/* {children} */}
-              {children[1].content} 
-              {children[1].txt}
-              {/* 具名插槽 类似vue  传递过来是数组 */}
-              {/* 插槽作用 */}
-              <button onClick={children[1].btnClick}>按钮</button>
-              {showBottomBar ? <BottomBar /> : null}
-          </div>
-      );
+    const { children, showTopBar, showBottomBar } = this.props;
+    console.log(children);
+    return (
+      <div>
+        {showTopBar ? <TopBar /> : null}
+        <h1>layout</h1>
+        {/* {children} */}
+        {children[1].content} 
+        {children[1].txt}
+        {/* 具名插槽 类似vue  传递过来是数组 */}
+        {/* 插槽作用 */}
+        <button onClick={children[1].btnClick}>按钮</button>
+        {showBottomBar ? <BottomBar /> : null}
+      </div>
+    );
   }
 };
 

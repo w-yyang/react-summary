@@ -17,11 +17,6 @@ export default class extends PureComponent<any, StateType>{
         };
     }
 
-    // shouldComponentUpdate(nextProps, nextState){
-    //     return nextState.count != this.state.count;
-    //     // 有条件渲染 优化性能
-    // }
-
     setCount = () => {
         this.setState({
             count: 100,
@@ -29,8 +24,6 @@ export default class extends PureComponent<any, StateType>{
                 num: 1000
             }
         });
-        // purecomponent state为对象时 setState会不断触发render
-        // 原因：比较方法为浅比较，仅比较一层 
     };
 
     render(){

@@ -6,12 +6,12 @@ export default class extends React.Component{
     this.event3 = this.event3.bind(this);
   }
 
-  event1 = () => {
-    console.log('事件触发1')
+  event1 = (e) => {
+    console.log('事件触发1', e);
   };
 
-  event2(){
-    console.log('事件触发2');
+  event2(e){
+    console.log('事件触发2', e);
   }
 
   event3(){
@@ -23,7 +23,7 @@ export default class extends React.Component{
       <div className="bind-this">
         <h4>this绑定</h4>
         <button onClick={this.event1}>触发1</button>
-        <button onClick={()=>this.event2()}>触发2</button>
+        <button onClick={(e)=>this.event2(e)}>触发2</button>
         <button onClick={this.event3}>触发3</button>
       </div>
     );

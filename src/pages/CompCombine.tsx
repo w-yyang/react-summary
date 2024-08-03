@@ -89,7 +89,6 @@ class List extends React.Component<ListPropTypes>{
     return(
       <ul>
         {
-          //this.props.todos.map((todo,index) => <li key={index}>{todo}</li>)
           todos.map((todo,index) => {return <li key={index}>{todo}</li>})
         }
       </ul>
@@ -100,20 +99,3 @@ class List extends React.Component<ListPropTypes>{
 List.propTypes = {
   todos:PropTypes.array.isRequired
 }
-
-//静态组件 动态组件
-/*数据保存在哪个组件
-  看数据是某个组件需要（给他） 还是某些组件需要（给共同的父亲）
-
-  需要在子组件中改变父组件状态
-  子组件中不可直接改变父组件状态
-  状态在哪个组建，更新状态的行为就应该在哪个组建
-  解决：父组件定义函数，传递给子组件，子组件调用
-
-  组件化编写功能流程
-  1拆分组件
-  2实现静态组件（无动态数据和交互）
-  3实现动态组件
-    （1）实现初始化数据动态显示
-    （2）实现交互功能
-*/

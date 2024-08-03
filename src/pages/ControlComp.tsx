@@ -8,12 +8,12 @@ export default function() {
   const handleSubmit = (event) => {
     console.log('提交元素', event);
     event.preventDefault();
+    console.log('用户1', element.value);
+    console.log('用户2', content);
   };
   const handleChange = (event) => {
     console.log('获取的dom元素', event);
     setContent(event.target.value);
-    console.log('用户1', element.value);
-    console.log('用户2', content);
   };
 
   return (

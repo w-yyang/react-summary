@@ -27,27 +27,3 @@ export default class extends React.Component{
       )
   }
 }
-
-// export default class ReduxPage extends Component{
-//   componentDidMount(){
-//       // 给予通知
-//       store.subscribe(() => {
-//           console.log('state发生变化了');
-//           //页面重新渲染
-//           this.forceUpdate();
-//           //强制刷新
-//       });
-//   }
-
-//   render(){
-//       console.log(store);
-//       return (
-//           <div>
-//               <h3>ReduxPage</h3>
-//               <p>{store.getState()}</p>
-//               <button onClick={()=>store.dispatch({type: 'ADD'})}>add</button>
-//               {/* state变更了 但页面未刷新 需要通知*/}
-//           </div>
-//       );
-//   }
-// }

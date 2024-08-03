@@ -124,5 +124,10 @@ export const routeList: IRouteList[] = [
     path: '/use/baseJsx',
     title: 'jsx基础',
     name: 'UseJsx'
+  },
+  {
+    path: '/use/useImperativeHandle',
+    title: 'useImperativeHandle',
+    name: 'UseImperativeHandle'
   }
 ];

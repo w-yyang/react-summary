@@ -1,42 +1,42 @@
 import React, {Component} from 'react';
 import {
-    // BrowserRouter as Router,
-    Link,
-    Route,
-    Routes
+	// BrowserRouter as Router,
+	Link,
+	Route,
+	Routes
 } from 'react-router-dom';
 
 // 有问题，待修改
 export default class RouterPage extends Component{
-    render(){
-        return (
-            <div>
-                <h3>RouterPage</h3>
-                {/* <Router> */}
-                    <Link to="/use/router">首页</Link>
-                    <Link to="/use/router/user">用户中心</Link>
-                    {/* a标签 */}
-                    <Routes>
-                        <Route 
-                            // exact
-                            path="/use/router" 
-                            element={HomePage}
-                            children={()=><div>children</div>}
-                          />
-                        {/* 优先级 children->component->render
-                            children func
-                            render func
-                            render={()=><div>render</div>}
-                        */}
-                        <Route path="/user" element={UserPage}/>
-                        <Route element={EmptyPage}/>
-                        {/* 仅匹配一个 */}
-                    </Routes>
-                    {/* 由上至下匹配路由 */}
-                {/* </Router> */}
-            </div>
-        );
-    }
+	render(){
+		return (
+			<div>
+				<h3>RouterPage</h3>
+				{/* <Router> */}
+					<Link to="/use/router">首页</Link>
+					<Link to="/use/router/user">用户中心</Link>
+					{/* a标签 */}
+					<Routes>
+						<Route 
+							// exact
+							path="/use/router" 
+							element={HomePage}
+							children={()=><div>children</div>}
+						/>
+						{/* 优先级 children->component->render
+								children func
+								render func
+								render={()=><div>render</div>}
+						*/}
+						<Route path="/user" element={UserPage}/>
+						<Route element={EmptyPage}/>
+						{/* 仅匹配一个 */}
+					</Routes>
+					{/* 由上至下匹配路由 */}
+				{/* </Router> */}
+			</div>
+		);
+	}
 }
 
 class HomePage extends Component{

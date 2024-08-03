@@ -1,7 +1,5 @@
 import React from 'react';
 
-import '../assets/ctx-header.less';
-
 const ControlBtn = React.forwardRef<HTMLButtonElement, any>((props, ref) => (
   <button ref={ref} {...props}>
       {props.children}
@@ -10,7 +8,7 @@ const ControlBtn = React.forwardRef<HTMLButtonElement, any>((props, ref) => (
 //通过forwardRef来传入创建的ref并获取内部要操控的dom  forwardRef可以精确定位 ref不可
 //通过ref来获取内部的dom组件
 
-export default class extends React.Component {
+class RefsComp extends React.Component {
   btnRef = React.createRef<HTMLButtonElement>();
 
   btnClick = () => {

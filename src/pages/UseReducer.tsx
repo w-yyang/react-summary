@@ -5,10 +5,10 @@ const initState = {
   count: 0
 };
 
-function initFunc(count) {
+function initFunc(initObj) {
   return {
-    count,
-    name: ''
+    count: initObj.count,
+    name: initObj.name
   };
 }
 
@@ -35,10 +35,10 @@ function reducer(state, action) {
 }
 
 export default function () {
-  // const [state, dispatch] = useReducer(reducer, initState);
-  const [state, dispatch] = useReducer(reducer, 5, initFunc);
   // 三个参数 reducer 初始化state 函数初始化
   // useReducer类似useState
+  const [state, dispatch] = useReducer(reducer, initState, initFunc);
+
   return (
     <div>
       <h3>useReducer</h3>

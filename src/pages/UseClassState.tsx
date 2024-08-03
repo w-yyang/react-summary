@@ -25,6 +25,7 @@ export default class extends React.Component<any, StateType> {
 
   handleClick = () => {
     const { count } = this.state;
+    console.log('老的count值', count);
     this.setState({
       count: count + 1
     }, () => {
@@ -48,8 +49,8 @@ export default class extends React.Component<any, StateType> {
       <>
         <h3 className='ctx-title'>类中state使用</h3>
         <p>{ count }</p>
-        <button onClick={() =>this.handleClick()}>异步执行</button>
-        <button onClick={() => this.syncHandleClick()}>同步执行</button>
+        <button onClick={() =>this.handleClick()}>同步执行</button>
+        <button onClick={() => this.syncHandleClick()}>异步执行</button>
       </>
     );
   }

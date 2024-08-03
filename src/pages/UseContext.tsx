@@ -1,42 +1,48 @@
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext, useState } from "react";
 
-const globalData = {
-  light: {
-    count: 11,
-    background: "white"
-  },
-  dark: {
-    count: 22,
-    background: "black"
-  }
+const initValObj = {
+  num: 0,
+  add: (num: number) => undefined
 };
 
-const DataContext = createContext(globalData.light);
+const GlobalContext = createContext(initValObj);
 
-function MiddleCom() {
+const GlobalProvider = ({ children }) => {
+  const [numState, setNumState] = useState(0);
+
+  const valueObj = {
+    num: numState,
+    add: (baseNum: number) => {
+      setNumState(prev => prev + baseNum);
+    }
+  };
+
   return (
-    <ChildCom />
+    <GlobalContext.Provider value={valueObj}>
+      { children }
+    </GlobalContext.Provider>
   );
 }
 
-function ChildCom() {
-  const globalData = useContext(DataContext);
-  return (
-    <div>
-      {globalData.count} --- {globalData.background}
-    </div>
-  );
-}
+const ChildElem = () => {
+  const globalObj = useContext(GlobalContext);
 
-export default function () {
+  console.log('globalObj', globalObj);
+  
   return (
     <div>
-      <h3>useContext</h3>
-      <div>
-        <DataContext.Provider value={globalData.dark}>
-          <MiddleCom />
-        </DataContext.Provider>
-      </div>
+      <span>{ globalObj.num }</span>
+      <button onClick={() => globalObj.add(4)}>add func</button>
     </div>
   );
 };
+
+export default function() {
+  return (
+    <div>
+      <GlobalProvider>
+        <ChildElem />
+      </GlobalProvider>
+    </div>
+  );
+}

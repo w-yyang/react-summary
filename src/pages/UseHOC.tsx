@@ -3,7 +3,7 @@ import React from 'react';
 // 返回组件无状态
 function HOC1(WrappedComponent) {
   const newProps = {
-    type: "asdasd"
+    name: "HOC1"
   };
   return props => <WrappedComponent {...props} {...newProps}/>
 }
@@ -12,7 +12,7 @@ function HOC1(WrappedComponent) {
 function HOC2(WrappedComponent) {
   return class extends React.Component {
     render() {
-      const newProps = { type: "asdasdsa" }
+      const newProps = { type: "HOC2" }
       return (
         <WrappedComponent {...this.props} {...newProps}/>
       );
@@ -51,108 +51,29 @@ function HOC3(WrappedComponent) {
   };
 }
 
-// HOC3使用
-// @HOC
-// class Example extends Component {
-//   render() {
-//     return <input name="name" {...this.props.name} />;
-//   }
-// }
-
 // 获取refs引用
-// import * as styles from './index.module.less';
+function HOC4(WrappedComponent) {
+  let inputElement: null | HTMLInputElement = null;
 
-// function HOC4(WrappedComponent) {
-//   let inputElement = null;
+  function handleClick() {
+    (inputElement as HTMLInputElement).focus();
+  }
 
-//   function handleClick() {
-//     inputElement.focus();
-//   }
-
-//   function wrappedComonentStatic() {
-//     WrappedComponent.sayHello();
-//   }
-
-//   return (props) => {
-//     <div className={styles.hocWrapper}>
-//       <WrappedComponent 
-//         inputRef={(el) => inputElement = el}
-//         {...props}/>
-//       <input 
-//         type="button"
-//         value="调用子组件static"
-//         onClick={wrappedComonentStatic}/>
-//     </div>
-//   };
-// }
-
-// HOC4使用示例
-// class User extends React.Component<IProps> {
-//   private inputElement: any ;
-
-//   static sayHello () {
-//     console.error('hello world'); // tslint:disable-line
-//   }
-
-//   constructor (props: IProps) {
-//     super(props);
-//     this.focus = this.focus.bind(this);
-//     this.onChange = this.onChange.bind(this);
-//   }
-
-//   state = {
-//     name: '',
-//     age: 0,
-//   };
-
-//   componentDidMount () {
-//     this.setState({
-//       name: this.props.name,
-//       age: this.props.age,
-//     });
-//   }
-
-//   onChange = (e: any) => {
-//     this.setState({
-//       age: e.target.value,
-//     });
-//   }
-
-//   focus () {
-//     this.inputElement.focus();
-//   }
-
-//   render () {
-//     return (
-//       <div className={styles.wrapper}>
-//         <div className={styles.nameWrapper}>姓名：{this.state.name}</div>
-//         <div className={styles.ageWrapper}>
-//           年龄:
-//             <input
-//               className={styles.input}
-//               value={this.state.age}
-//               onChange={this.onChange}
-//               type="number"
-//               ref={input => {
-//                 if (this.props.inputRef) {
-//                   this.props.inputRef(input); // 调用父组件传入的ref回调函数
-//                 }
-//                 this.inputElement = input;
-//               }}
-//             />
-//         </div>
-//         <div>
-//           <button
-//             className={styles.button}
-//             onClick={this.focus}
-//           >
-//             获取输入框焦点
-//           </button>
-//         </div>
-//       </div>
-//     );
-//   }
-// }
+  return (props) => {
+    return (
+      <div>
+        <WrappedComponent 
+          inputRef={(el) => inputElement = el}
+          {...props}
+        />
+        <input 
+          type="button"
+          value="调用子组件static"
+          onClick={handleClick}/>
+      </div>
+    );
+  };
+}
 
 // 反向继承
 const HOC5 = (WrappedComponent) => {
@@ -168,14 +89,21 @@ function HOC6(WrappedComponent) {
   const didMount = WrappedComponent.prototype.componentDidMount;
 
   return class extends WrappedComponent {
+    constructor(props) {
+      super(props);
+    }
+
     componentDidMount() {
+      console.log(WrappedComponent.prototype);
       if(didMount) {
         didMount.apply(this);
+        console.log('componentDidMount方法被劫持')
       }
       // ...
     }
 
     render() {
+      console.log('劫持组件的render')
       return super.render();
     }
   };
@@ -204,7 +132,12 @@ function HOC7(WrappedComponent) {
 // 条件渲染
 const HOC8 = (WrappedComponent) =>
   class extends WrappedComponent {
+    constructor(props) {
+      super(props);
+    }
+
     render() {
+      console.log('render', this.props.isRender);
       if (this.props.isRender) {
         return super.render();
       } else {
@@ -214,31 +147,96 @@ const HOC8 = (WrappedComponent) =>
   }
 
 // 修改React元素树
-// function HOC9(WrappedComponent) {
-//   return class extends WrappedComponent {
-//     render() {
-//       const tree = super.render();
-//       const newProps = {};
-//       if (tree && tree.type === 'input') {
-//         newProps.value = 'something here';
-//       }
-//       const props = {
-//         ...tree.props,
-//         ...newProps,
-//       };
-//       const newTree = React.cloneElement(tree, props, tree.props.children);
-//       return newTree;
-//     }
-//   };
-// }
+function HOC9(WrappedComponent) {
+  return class extends WrappedComponent {
+    render() {
+      const tree = super.render();
+      const newProps: any = {};
+      if (tree && tree.type === 'input') {
+        newProps.value = 'something here';
+      }
+      const props = {
+        ...tree.props,
+        ...newProps,
+      };
+      const newTree = React.cloneElement(tree, props, tree.props.children);
+      return newTree;
+    }
+  };
+}
 
+const TestComp = (props) => {
+  console.log('props', props);
 
-export default HOC1(function (props) {
-  const { type } = props;
   return (
     <div>
-      <h3>useHOC</h3>
-      <p>{type}</p>
+      testComp
+      <input
+        ref={el => {
+          if (props.inputRef) {
+            props.inputRef(el); // 调用父组件传入的ref回调函数
+          }
+        }}
+      />
     </div>
   );
-});
+};
+
+class TestC extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  componentDidMount(): void {
+    console.log('test组件的componentDidMount');
+  }
+
+  render(): React.ReactNode {
+    console.log('state', this.state);
+
+    return (
+      <div>ttttt</div>
+    );
+  }
+}
+
+const Hoc1C = HOC1(TestComp);
+const Hoc2C = HOC2(TestComp);
+const Hoc3C = HOC3(TestComp);
+const Hoc4C = HOC4(TestComp);
+const Hoc5C = HOC5(TestComp);
+const Hoc6C = HOC6(TestC);
+const Hoc7C = HOC7(TestC);
+const Hoc8C = HOC8(TestComp); // ???有问题
+const Hoc9C = HOC9(TestComp); // ???有问题
+
+export default function() {
+  return (
+    <div>
+      <Hoc1C />
+      <hr />
+      <Hoc2C />
+      <hr />
+      <Hoc3C />
+      <hr />
+      {/* @ts-ignores */}
+      <Hoc4C />
+      <hr />
+      {/* @ts-ignores */}
+      <Hoc5C />
+      <hr />
+      {/* @ts-ignores */}
+      <Hoc6C />
+      <hr />
+      {/* @ts-ignores */}
+      <Hoc7C />
+      <hr />
+      {/* @ts-ignores */}
+      <Hoc8C />
+      <hr />
+      {/* @ts-ignores */}
+      <Hoc9C />
+    </div>
+  );
+}

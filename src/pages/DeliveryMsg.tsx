@@ -4,6 +4,15 @@ type StateType = {
   number: number;
 };
 
+const Child = (props) => {
+  const { handleClick } = props;
+  return (
+    <div className='child'>
+      <button onClick={() => handleClick(4)}>+4</button>
+    </div>
+  );
+};
+
 export default class extends React.Component<any, StateType> {
   constructor(props){
     super(props);
@@ -14,10 +23,9 @@ export default class extends React.Component<any, StateType> {
   }
 
   handleClick(data){
-    let temp = this.state.number;
-    this.setState({
-      number: data + temp
-    });
+    this.setState((prev) => ({
+      number: data + prev.number
+    }));
   }
 
   render(){
@@ -29,12 +37,3 @@ export default class extends React.Component<any, StateType> {
     )
   }
 }
-
-const Child = (props) => {
-  const {handleClick} = props;
-  return (
-    <div className='child'>
-      <button onClick={()=>handleClick(4)}>+4</button>
-    </div>
-  );
-};
