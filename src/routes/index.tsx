@@ -1,31 +1,49 @@
-import React from 'react';
+import React, { ReactElement, Suspense } from 'react';
 import {
   Routes,
   Route
 } from 'react-router-dom';
 
-import { routeList } from './routeItem';
-import asyncComponent from '../components/asyncComponent';
+import { routeList, IRouteList } from './routeItem';
 
-interface IRouteList {
-  path: string;
-  component: any;
+const CompWrapper = ({ comp }: { comp: ReactElement | null }) => {
+  return (
+    <Suspense fallback={<div>组件加载中......</div>}>
+      { comp }
+    </Suspense>
+  );
 };
 
-const routesList: IRouteList[] = routeList.map(item => {
-  return {
-    path: item.path,
-    component: asyncComponent(() => require(`../pages/${item.name}`)),
-  };
-});
+const transformRouteConfig = (routeListItem: IRouteList, parentDir?: string) => {
+  const Comp = routeListItem.component;
+  if (!routeListItem.children) {
+    return (
+      <Route
+        key={`${routeListItem.path}_no_child`}
+        path={routeListItem.path}
+        element={ <CompWrapper comp={Comp ? <Comp /> : null} /> }
+      />
+    );
+  } else {
+    return (
+      <Route 
+        key={`${routeListItem.path}_has_child`} 
+        path={routeListItem.path}
+        element={ <CompWrapper comp={Comp ? <Comp /> : null} /> }
+      >
+        {
+          routeListItem.children.map(rItem => transformRouteConfig(rItem, routeListItem.name))
+        }
+      </Route>
+    );
+  }
+};
 
 export const RouteList = () => {
   return (
     <Routes>
       { 
-        routesList.map(item => {
-          return <Route key={item.path} path={item.path} element={item.component ? <item.component /> : null} />;
-        }) 
+        routeList.map(rItem => transformRouteConfig(rItem)) 
       }
     </Routes>
   );

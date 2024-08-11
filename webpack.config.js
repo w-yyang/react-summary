@@ -43,7 +43,20 @@ module.exports = {
     new CleanWebpackPlugin()
   ],
   devServer: {
-    port: 3000,
-    hot: true
+    port: 8080,
+    hot: true,
+    proxy: [
+      {
+        context: ['/api'],
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+        secure: false,
+      }
+    ],
+    client: {
+      overlay: {
+        warnings: false
+      },
+    },
   }
 };

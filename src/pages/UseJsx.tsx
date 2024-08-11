@@ -1,5 +1,6 @@
 import React from 'react';
 
+// @ts-ignore
 import logo from '../components/header/logo.svg';
 
 const name = 'aaaaa';
@@ -36,4 +37,12 @@ const jsx = (
 function formatName(name){
   return name.first + ' ' + name.last;
 }
+
+export default function() {
+  return (
+    <div>
+      { jsx }
+    </div>
+  )
+};
 
