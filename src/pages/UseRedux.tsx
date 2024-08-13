@@ -1,28 +1,36 @@
 import React from 'react';
 
 import store from '../stores/use-redux/store';
-import { sendAction } from '../stores/use-redux/action-types';
+import { changeVal } from '../stores/use-redux/reducer';
 
 // 有问题 待修复
-export default class extends React.Component{
+export default class extends React.Component<unknown, { value: string }> {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      value: store.getState().value
+    }
+  }
 
   componentDidMount() {
     store.subscribe(() => {
-      console.log(store.getState());
+      console.log('监听函数', store.getState());
+      this.setState({
+        value: store.getState().value
+      });
     });
   }
 
   handleClick = () => {
-    const action = sendAction();
-    store.dispatch(action);
-    this.setState({});
+    store.dispatch(changeVal('asdfsgdhfjg'));
   };
 
   render(){
       return (
         <>
           <button onClick={this.handleClick}>点击</button>
-          <div>{ store.getState().value }</div>
+          <div>{ this.state.value }</div>
         </>
       )
   }

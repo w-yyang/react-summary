@@ -1,13 +1,19 @@
+import { createSlice } from "@reduxjs/toolkit";
+
 const initState = {
   value: '默认值'
 };
 
-export const reducer = (state=initState, action) => {
-  console.log(state, action);
-  switch (action) {
-    case 'send_type':
-      return Object.assign({}, state, action);
-    default:
-      return state;
+const reducer = createSlice({
+  name: 'reducer',
+  initialState: initState,
+  reducers: {
+    changeVal(state, { payload }) {
+      state.value = payload;
+    }
   }
-};
+});
+
+export const { changeVal } = reducer.actions;
+
+export default reducer.reducer;

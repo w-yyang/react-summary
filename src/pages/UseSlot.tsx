@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, ReactElement} from 'react';
 
 const TopBar = () => {
   return (
@@ -20,6 +20,7 @@ type PropType = {
   showTopBar: boolean;
   showBottomBar: boolean;
   title: string;
+  children: any;
 };
 
 class Layout extends Component<PropType> {

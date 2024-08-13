@@ -1,26 +1,21 @@
-const initState = {
-  count: 0,
-  user: 'wyy'
-};
+import { createSlice } from "@reduxjs/toolkit";
 
-export const reducer = (state=initState, action) => {
-  console.log(state, action);
-  // Object.assign();
-  switch(action.type){
-    case 'add_action':
-      return {
-        ...state,
-        count: state.count + 1
-      };
-    case 'sub_action': {
-      return {
-        ...state,
-        count: state.count - 1
-      }
-    };
-    case 'send_type':
-      return Object.assign({}, state, action);
-    default: 
-      return state; 
+const testSlice = createSlice({
+  name: 'test',
+  initialState: {
+    count: 0
+  },
+  reducers: {
+    addAction: (state) => {
+      state.count++;
+    },
+    subAction: (state) => {
+      state.count--;
+    }
   }
-};
+});
+
+export const { addAction, subAction } = testSlice.actions;
+
+export default testSlice.reducer;
+

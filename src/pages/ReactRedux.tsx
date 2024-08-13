@@ -3,23 +3,16 @@ import { Provider } from 'react-redux';
 import { connect } from 'react-redux';
 
 import store from '../stores/use-react-redux/store';
+import { addAction, subAction } from '../stores/use-react-redux/reducer';
 
 const mapStateToProps = state => {
   return state;
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = dispatchEvent => {
   return {
-      sendAddAction: () => {
-          dispatch({
-              type: 'add_action'
-          });
-      },
-      sendSubAction: () => {
-          dispatch({
-              type: 'sub_action'
-          });
-      }
+    sendAddAction: () => dispatchEvent(addAction()),
+    sendSubAction: () => dispatchEvent(subAction()),
   };
 };
 
@@ -32,7 +25,7 @@ type PropsType = {
 const PkgCountDemo: React.ComponentType<any> = connect(mapStateToProps, mapDispatchToProps)(class CountDemo extends React.Component<PropsType>{
   constructor(props){
 		super(props);
-		console.log(this.props);
+    console.log('this.props.sendAddAction();', this.props);
   }
 
   add(){
@@ -47,7 +40,8 @@ const PkgCountDemo: React.ComponentType<any> = connect(mapStateToProps, mapDispa
     return (
       <div className="count">
         <button onClick={()=>this.add()}>+</button>
-        <span>{this.props.count}</span>
+        {/* @ts-ignore */}
+        <span>{this.props.testReducer.count}</span>
         <button onClick={()=>this.subtract()}>-</button>
       </div>
     )

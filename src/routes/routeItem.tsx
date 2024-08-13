@@ -121,6 +121,11 @@ export const routeList: IRouteList[] = [
     component: React.lazy(() => import('../pages/ReactRedux'))
   },
   {
+    path: '/use/reactreduxhook',
+    title: 'react-redux-hook使用',
+    component: React.lazy(() => import('../pages/ReactReduxHooks'))
+  },
+  {
     path: '/use/useRedux',
     title: 'redux使用',
     name: 'UseRedux',
