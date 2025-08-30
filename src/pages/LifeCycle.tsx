@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 
-export default class extends React.Component<{}, { num: number }> {
-  constructor(props) {
+export default class extends React.Component<null, { num: number }> {
+	constructor(props) {
 		super(props);
 		console.log('constructor', props);
 

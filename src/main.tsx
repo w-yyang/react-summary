@@ -5,6 +5,6 @@ import App from './App';
 import './assets/normalize.css';
 
 ReactDOM.render(
-  <App />,
-  document.querySelector('#root')
+	<App />,
+	document.querySelector('#root')
 );

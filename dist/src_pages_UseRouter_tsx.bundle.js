@@ -1,0 +1,22 @@
+"use strict";
+/*
+ * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+(self["webpackChunkreact_summary"] = self["webpackChunkreact_summary"] || []).push([["src_pages_UseRouter_tsx"],{
+
+/***/ "./src/pages/UseRouter.tsx":
+/*!*********************************!*\
+  !*** ./src/pages/UseRouter.tsx ***!
+  \*********************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+eval("\nvar __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {\n    if (k2 === undefined) k2 = k;\n    var desc = Object.getOwnPropertyDescriptor(m, k);\n    if (!desc || (\"get\" in desc ? !m.__esModule : desc.writable || desc.configurable)) {\n      desc = { enumerable: true, get: function() { return m[k]; } };\n    }\n    Object.defineProperty(o, k2, desc);\n}) : (function(o, m, k, k2) {\n    if (k2 === undefined) k2 = k;\n    o[k2] = m[k];\n}));\nvar __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {\n    Object.defineProperty(o, \"default\", { enumerable: true, value: v });\n}) : function(o, v) {\n    o[\"default\"] = v;\n});\nvar __importStar = (this && this.__importStar) || function (mod) {\n    if (mod && mod.__esModule) return mod;\n    var result = {};\n    if (mod != null) for (var k in mod) if (k !== \"default\" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);\n    __setModuleDefault(result, mod);\n    return result;\n};\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports[\"default\"] = default_1;\nvar react_1 = __importStar(__webpack_require__(/*! react */ \"./node_modules/react/index.js\"));\nvar react_router_dom_1 = __webpack_require__(/*! react-router-dom */ \"./node_modules/react-router-dom/dist/index.js\");\nvar getRandomNum = function () {\n    return Number(Math.random().toFixed(1)) * 10;\n};\nfunction default_1() {\n    var navigate = (0, react_router_dom_1.useNavigate)();\n    var a = (0, react_router_dom_1.useParams)().a;\n    var searchParams = (0, react_router_dom_1.useSearchParams)()[0];\n    var location = (0, react_router_dom_1.useLocation)();\n    var routerTestList = [\n        {\n            path: '/use/router/test1',\n            name: 'UseRouter1'\n        },\n        {\n            path: '/use/router/test2',\n            name: 'UseRouter2'\n        },\n        {\n            path: '/use/router/test3',\n            name: 'UseRouter3'\n        }\n    ];\n    var handleJump = function (path) {\n        navigate(\"\".concat(path, \"?a=\").concat(getRandomNum()), { state: { rIdP: getRandomNum() } });\n    };\n    (0, react_1.useEffect)(function () {\n        console.log('locationInstance', location);\n    }, [location]);\n    (0, react_1.useEffect)(function () {\n        console.log('searchParams', searchParams.get('a'));\n    }, [searchParams]);\n    (0, react_1.useEffect)(function () {\n        console.log('useParams', a);\n    }, [a]);\n    return (react_1.default.createElement(\"div\", null,\n        react_1.default.createElement(\"div\", null,\n            react_1.default.createElement(\"p\", null, \"\\u6807\\u7B7E\\u8DEF\\u7531\"),\n            routerTestList.map(function (rItem) { return react_1.default.createElement(react_router_dom_1.Link, { key: \"\".concat(rItem.path, \"_link\"), to: \"\".concat(rItem.path, \"/\").concat(getRandomNum()) }, rItem.name); })),\n        react_1.default.createElement(\"div\", null,\n            react_1.default.createElement(\"p\", null, \"\\u7F16\\u7A0B\\u8DEF\\u7531\"),\n            routerTestList.map(function (rItem) { return react_1.default.createElement(\"button\", { key: \"\".concat(rItem.path, \"_code\"), onClick: function () { return handleJump(rItem.path); } }, rItem.name); })),\n        react_1.default.createElement(react_router_dom_1.Outlet, null)));\n}\n\n\n//# sourceURL=webpack://react-summary/./src/pages/UseRouter.tsx?");
+
+/***/ })
+
+}]);

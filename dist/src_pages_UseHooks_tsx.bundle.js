@@ -1,0 +1,22 @@
+"use strict";
+/*
+ * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+(self["webpackChunkreact_summary"] = self["webpackChunkreact_summary"] || []).push([["src_pages_UseHooks_tsx"],{
+
+/***/ "./src/pages/UseHooks.tsx":
+/*!********************************!*\
+  !*** ./src/pages/UseHooks.tsx ***!
+  \********************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+eval("\nvar __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {\n    if (k2 === undefined) k2 = k;\n    var desc = Object.getOwnPropertyDescriptor(m, k);\n    if (!desc || (\"get\" in desc ? !m.__esModule : desc.writable || desc.configurable)) {\n      desc = { enumerable: true, get: function() { return m[k]; } };\n    }\n    Object.defineProperty(o, k2, desc);\n}) : (function(o, m, k, k2) {\n    if (k2 === undefined) k2 = k;\n    o[k2] = m[k];\n}));\nvar __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {\n    Object.defineProperty(o, \"default\", { enumerable: true, value: v });\n}) : function(o, v) {\n    o[\"default\"] = v;\n});\nvar __importStar = (this && this.__importStar) || function (mod) {\n    if (mod && mod.__esModule) return mod;\n    var result = {};\n    if (mod != null) for (var k in mod) if (k !== \"default\" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);\n    __setModuleDefault(result, mod);\n    return result;\n};\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports[\"default\"] = default_1;\nvar react_1 = __importStar(__webpack_require__(/*! react */ \"./node_modules/react/index.js\"));\n/**\n* Hook 一个特殊的函数 可以钩入react特性\n*  当需要在函数组件中添加state时使用\n*\n* Hook使用规则\n*      JavaScript函数\n*      1.只能在函数最外层调用Hook，不要在循环 条件 或子函数中调用\n*      2.只能在react的函数组件中调用Hook，不要在其他js函数中调用。\n*      3.可在自定义的Hook中调用Hook\n*/\n// 自定义hook命名要以use开头  达到组件抽离的作用\nfunction useClock() {\n    var _a = (0, react_1.useState)(new Date()), date = _a[0], setDate = _a[1];\n    var timer = null;\n    (0, react_1.useEffect)(function () {\n        console.log('date effect');\n        timer = setInterval(function () {\n            setDate(new Date());\n        }, 1000);\n        return function () {\n            timer && clearInterval(timer);\n        };\n    }, []);\n    return date;\n}\nfunction default_1() {\n    var date = useClock();\n    return (react_1.default.createElement(react_1.default.Fragment, null,\n        react_1.default.createElement(\"p\", null, date.toLocaleTimeString())));\n}\n;\n// 获取横向，纵向滚动条位置\nvar getPosition = function () {\n    return {\n        x: document.body.scrollLeft,\n        y: document.body.scrollTop,\n    };\n};\nvar useScroll = function () {\n    // 定一个 position 这个 state 保存滚动条位置\n    var _a = (0, react_1.useState)(getPosition()), position = _a[0], setPosition = _a[1];\n    (0, react_1.useEffect)(function () {\n        var handler = function () {\n            setPosition(getPosition());\n        };\n        // 监听 scroll 事件，更新滚动条位置\n        document.addEventListener(\"scroll\", handler);\n        return function () {\n            // 组件销毁时，取消事件监听\n            document.removeEventListener(\"scroll\", handler);\n        };\n    }, []);\n    return position;\n};\nfunction ScrollTop() {\n    var y = useScroll().y;\n    var goTop = (0, react_1.useCallback)(function () {\n        document.body.scrollTop = 0;\n    }, []);\n    // 当滚动条位置纵向超过 300 时，显示返回顶部按钮\n    if (y > 300) {\n        return (react_1.default.createElement(\"button\", { onClick: goTop }, \"Back to Top\"));\n    }\n    // 否则不 render 任何 UI\n    return null;\n}\n\n\n//# sourceURL=webpack://react-summary/./src/pages/UseHooks.tsx?");
+
+/***/ })
+
+}]);

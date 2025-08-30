@@ -1,19 +1,18 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import { connect } from 'react-redux';
+import { Provider, connect } from 'react-redux';
 
 import store from '../stores/use-react-redux/store';
 import { addAction, subAction } from '../stores/use-react-redux/reducer';
 
 const mapStateToProps = state => {
-  return state;
+	return state;
 };
 
 const mapDispatchToProps = dispatchEvent => {
-  return {
-    sendAddAction: () => dispatchEvent(addAction()),
-    sendSubAction: () => dispatchEvent(subAction()),
-  };
+	return {
+		sendAddAction: () => dispatchEvent(addAction()),
+		sendSubAction: () => dispatchEvent(subAction()),
+	};
 };
 
 type PropsType = {
@@ -23,37 +22,37 @@ type PropsType = {
 };
 
 const PkgCountDemo: React.ComponentType<any> = connect(mapStateToProps, mapDispatchToProps)(class CountDemo extends React.Component<PropsType>{
-  constructor(props){
+	constructor(props){
 		super(props);
-    console.log('this.props.sendAddAction();', this.props);
-  }
+		console.log('this.props.sendAddAction();', this.props);
+	}
 
-  add(){
-    this.props.sendAddAction();
-  };
+	add(){
+		this.props.sendAddAction();
+	};
 
-  subtract(){
-    this.props.sendSubAction();
-  };
+	subtract(){
+		this.props.sendSubAction();
+	};
 
-  render(){
-    return (
-      <div className="count">
-        <button onClick={()=>this.add()}>+</button>
-        {/* @ts-ignore */}
-        <span>{this.props.testReducer.count}</span>
-        <button onClick={()=>this.subtract()}>-</button>
-      </div>
-    )
-  }
+	render(){
+		return (
+			<div className="count">
+				<button onClick={()=>this.add()}>+</button>
+				{/* @ts-ignore */}
+				<span>{this.props.testReducer.count}</span>
+				<button onClick={()=>this.subtract()}>-</button>
+			</div>
+		);
+	}
 });
 
-export default function(props) {
-  return (
-    <>
-      <Provider store={store}>
+export default function() {
+	return (
+		<>
+			<Provider store={store}>
 				<PkgCountDemo />
-      </Provider>
-    </>
-  );
+			</Provider>
+		</>
+	);
 };

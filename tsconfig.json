@@ -68,5 +68,6 @@
     "skipLibCheck": true,                     /* Skip type checking of declaration files. */
     "forceConsistentCasingInFileNames": true  /* Disallow inconsistently-cased references to the same file. */
   },
-  "include": ["images.d.ts"]
+  "include": ["src/**/*", "images.d.ts"],
+  "exclude": ["webpack.config.js"]
 }

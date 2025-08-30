@@ -7,15 +7,15 @@ import { AppContent } from './components/content';
 import './app.less';
 
 export default function App() {
-  return (
-    <div className="app-container">
-      <AppHeader />
-      <div className="ctx-wrapper">
-        <HashRouter>
-          <AppAside />
-          <AppContent />
-        </HashRouter>
-      </div>
-    </div>
-  );
+	return (
+		<div className="app-container">
+			<AppHeader />
+			<div className="ctx-wrapper">
+				<HashRouter>
+					<AppAside />
+					<AppContent />
+				</HashRouter>
+			</div>
+		</div>
+	);
 };

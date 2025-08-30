@@ -3,9 +3,9 @@ import { Outlet, Link, useNavigate, useLocation, useSearchParams, useParams } fr
 
 const getRandomNum = () => {
 	return Number(Math.random().toFixed(1)) * 10;
-}
+};
 
-export default function() {
+export default function Comp() {
 	const navigate = useNavigate();
 	const { a } = useParams();
 	const [searchParams] = useSearchParams();
