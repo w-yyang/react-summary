@@ -46,11 +46,11 @@ module.exports = {
 			template: './src/template/index.html'
 		}),
 		new CleanWebpackPlugin(),
-		new BundleAnalyzerPlugin({
-			analyzerMode: 'static',
-			openAnalyzer: true,
-			reportFilename: 'stat.html'
-		})
+		// new BundleAnalyzerPlugin({
+		// 	analyzerMode: 'static',
+		// 	openAnalyzer: true,
+		// 	reportFilename: 'stat.html'
+		// })
 	],
 	devServer: {
 		port: 8080,
